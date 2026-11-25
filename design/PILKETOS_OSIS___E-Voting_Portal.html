@@ -1,0 +1,867 @@
+<!DOCTYPE html><html lang="id" class="scroll-smooth"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PILKETOS OSIS 2026 — Portal E-Voting SMAN 1 Nusantara</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config" data-stitch-original-src="58df04300a5c0a2a===../../tailwind.config.js">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#1D4ED8',
+        'on-primary': '#FFFFFF',
+        'primary-hover': '#1E40AF',
+        'primary-tint': '#EFF6FF',
+        'on-primary-tint': '#1D4ED8',
+        'surface': '#FFFFFF',
+        'on-surface': '#0F172A',
+        'surface-canvas': '#F8FAFC',
+        'on-surface-canvas': '#0F172A',
+        'surface-subtle': '#F1F5F9',
+        'on-surface-subtle': '#475569',
+        'muted': '#475569',
+        'border-hairline': '#E2E8F0',
+        'border-input': '#CBD5E1',
+        'success': '#059669',
+        'on-success': '#1C1C1C',
+        'error': '#DC2626',
+        'on-error': '#FFFFFF',
+      },
+      borderRadius: {
+        'sm': '4px',
+        'DEFAULT': '8px',
+        'md': '12px',
+        'lg': '16px',
+        'full': '9999px',
+      },
+      spacing: {
+        'xs': '4px',
+        'sm': '8px',
+        'md': '16px',
+        'lg': '24px',
+        'xl': '32px',
+        '2xl': '48px',
+        'section': '64px',
+        'section-lg': '80px',
+      },
+      fontFamily: {
+        'display': ['"Space Grotesk"', 'sans-serif'],
+        'headline': ['"Space Grotesk"', 'sans-serif'],
+        'title': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'body': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'label': ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['48px', { lineHeight: '52px', letterSpacing: '-1.4px', fontWeight: '700' }],
+        'display-lg-mobile': ['32px', { lineHeight: '36px', letterSpacing: '-0.96px', fontWeight: '700' }],
+        'headline-lg': ['36px', { lineHeight: '40px', letterSpacing: '-1px', fontWeight: '700' }],
+        'headline-lg-mobile': ['28px', { lineHeight: '32px', letterSpacing: '-0.8px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '28px', letterSpacing: '-0.7px', fontWeight: '700' }],
+        'title-lg': ['20px', { lineHeight: '26px', letterSpacing: '-0.4px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+      },
+      transitionDuration: {
+        'interactive': '200ms',
+        'progress-bar': '400ms',
+      },
+      transitionDelay: {
+        'interactive': '0ms',
+        'progress-bar': '0ms',
+      },
+      transitionTimingFunction: {
+        'interactive': 'cubic-bezier(0.16, 1, 0.3, 1)',
+        'progress-bar': 'cubic-bezier(0.16, 1, 0.3, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined, .material-symbols-rounded, .material-symbols-sharp, .material-icons {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      line-height: 1 !important;
+      box-sizing: content-box;
+      overflow: hidden;
+      white-space: nowrap;
+      direction: ltr;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body class="bg-surface-canvas text-on-surface font-body antialiased">
+  <div class="min-h-screen flex flex-col">
+
+    <!-- 1. HEADER -->
+    <header class="sticky top-0 z-40 bg-surface border-b border-border-hairline">
+      <div class="max-w-[1200px] mx-auto px-lg h-[72px] flex items-center justify-between gap-md">
+        <!-- Left: Geometric Emblem & School Title -->
+        <a href="#beranda" class="flex items-center gap-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
+          <div class="w-10 h-10 rounded bg-primary flex items-center justify-center shrink-0" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="10" width="18" height="11" rx="2" stroke="#FFFFFF" stroke-width="2"></rect>
+              <path d="M8 10V5.5C8 4.67157 8.67157 4 9.5 4H14.5C15.3284 4 16 4.67157 16 5.5V10" stroke="#FFFFFF" stroke-width="2"></path>
+              <path d="M9 15.5L11 17.5L15 13.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span data-design-text-token="title-md" class="font-headline text-title-md text-on-surface leading-tight">PILKETOS OSIS</span>
+            <span data-design-text-token="label-sm" class="text-label-sm text-muted">SMAN 1 Nusantara</span>
+          </div>
+        </a>
+
+        <!-- Center: Navigation Links (Desktop) -->
+        <nav aria-label="Navigasi Utama" class="hidden lg:flex items-center gap-xl">
+          <a href="#beranda" data-design-text-token="label-lg" class="text-label-lg text-primary transition-colors duration-interactive ease-interactive">Beranda</a>
+          <a href="#kandidat" data-design-text-token="label-lg" class="text-label-lg text-muted hover:text-on-surface transition-colors duration-interactive ease-interactive">Kandidat</a>
+          <a href="#bilik-suara" data-design-text-token="label-lg" class="text-label-lg text-muted hover:text-on-surface transition-colors duration-interactive ease-interactive">Bilik Suara</a>
+          <a href="#quick-count" data-design-text-token="label-lg" class="text-label-lg text-muted hover:text-on-surface transition-colors duration-interactive ease-interactive">Live Quick Count</a>
+        </nav>
+
+        <!-- Right: Outlined Status Badge Pill + Mobile Menu Toggle -->
+        <div class="flex items-center gap-sm">
+          <!-- COMPONENT: badge-status -->
+          <span data-component-id="badge-status" data-component-type="badge" data-component-variant="status" role="status" class="hidden sm:inline-flex items-center gap-xs rounded-full border border-border-hairline bg-surface-subtle text-on-surface px-3 py-1">
+            <span class="w-2 h-2 rounded-full bg-success shrink-0" aria-hidden="true"></span>
+            <span data-design-text-token="label-sm" class="text-label-sm">Pemilihan Resmi • 1 Siswa 1 Suara</span>
+          </span>
+
+          <button id="mobile-menu-btn" type="button" aria-label="Buka menu navigasi" aria-expanded="false" class="lg:hidden inline-flex items-center justify-center w-10 h-10 bg-surface hover:bg-surface-subtle text-on-surface border border-border-hairline rounded transition-colors duration-interactive ease-interactive">
+            <span class="material-symbols-outlined text-[20px]" aria-hidden="true">menu</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-nav" class="hidden lg:hidden border-t border-border-hairline bg-surface px-lg py-md">
+        <nav aria-label="Navigasi Mobile" class="flex flex-col gap-sm">
+          <a href="#beranda" class="text-label-lg text-primary py-xs">Beranda</a>
+          <a href="#kandidat" class="text-label-lg text-muted hover:text-on-surface py-xs">Kandidat</a>
+          <a href="#bilik-suara" class="text-label-lg text-muted hover:text-on-surface py-xs">Bilik Suara</a>
+          <a href="#quick-count" class="text-label-lg text-muted hover:text-on-surface py-xs">Live Quick Count</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <!-- 2. HERO: ASYMMETRIC 3-COLUMN SPLIT LAYOUT -->
+      <section id="beranda" class="py-section lg:py-section-lg border-b border-border-hairline bg-surface-canvas">
+        <div class="max-w-[1200px] mx-auto px-lg">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-xl items-center">
+
+            <!-- Left Column: Stacked Display Typography, Overview, Avatar Stack, Single Primary CTA -->
+            <div class="lg:col-span-4 flex flex-col items-start gap-lg">
+              <h1 data-design-text-token="display-lg" class="font-headline text-display-lg-mobile lg:text-display-lg uppercase text-on-surface text-balance">
+                SUARA ANDA<br>MASA DEPAN<br>OSIS KITA
+              </h1>
+
+              <p data-design-text-token="body-lg" class="text-body-lg text-muted text-pretty max-w-prose">
+                Portal demokrasi digital resmi SMAN 1 Nusantara untuk pemilihan Ketua dan Wakil Ketua OSIS periode 2026/2027 secara langsung, jujur, dan terenkripsi.
+              </p>
+
+              <!-- Avatar Stack Badge -->
+              <div class="inline-flex items-center gap-sm bg-surface border border-border-hairline rounded-full py-1.5 pl-1.5 pr-4 shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)]">
+                <div class="flex -space-x-2">
+                  <img src="https://lh3.googleusercontent.com/aida/ALJJyrCnUnJZ79Yk7Ebj9T9Dir1T4FJGo2aXmJoE8MkZzDxpg72YghIpKVjLUyQlqHX_LJSHO9P4ejiDs1_Jvm798Huax8vh96WaZ3aziV3_4Anr-OKAgEXL1enMbqpNtvNW93znSjpdlSPM_0ZpQ7qXj4OcchapIolBuQ8qfDtCPyEzEUA96wLOEYSXdPtMHCy7acViULeSsD7Ocmw4SFAXaaX0OOmVJhVd5iFJo69Y3Ig1gvBoBf37LNWbd-w" alt="Perwakilan siswa 1" class="w-7 h-7 rounded-full object-cover border-2 border-surface" data-stitch-original-src="baa17aee4b14bb41===../../images/student_avatar_1.jpg">
+                  <img src="https://lh3.googleusercontent.com/aida/ALJJyrARkjwBZoe5un4zGScDi0Kz3Jipgqszzugu1iMsoLC6ZfqWQMEKcHvpgTYfX9viMRnpTYHhNo7QoryGefqed91juNULJ0btg69cZf5emNEezytFqrpDIagSFnw1g_I0mB0kKkUXM590ADlCnVnkOXvA906D-0wtusItPjvjuxTCFn1b5IY58tT3phRd4W9bpzjROc4AQktmGlsVEjR3eP67d7tbmk446730x-Vx2ih568_fC5TIf8QpFDey" alt="Perwakilan siswa 2" class="w-7 h-7 rounded-full object-cover border-2 border-surface" data-stitch-original-src="d8bbdecfa1752cc9===../../images/student_avatar_2.jpg">
+                  <img src="https://lh3.googleusercontent.com/aida/ALJJyrD7p-fpwNbh6PZ0LTTKQ6A22_F8JOzOSQiewmEF6MR8bb-f6cc-BQ0vZQqyYuVm_wA0puAU7KIttfHOa7fgook-9T20aSt-OI2vY5kUPeNIxNggY_q9qMXTalsiXghaAILAIDIC96X2ob8q8nI1enb3bEi6On9i4IjFtqpv4a_yIEAFXpWfPKmt4LpSGvZQRU1RUwaO2L94t20gKENChbV3aRlChWw6ufgb9C0nE9tREDcviHlRmFgClI-L" alt="Perwakilan siswa 3" class="w-7 h-7 rounded-full object-cover border-2 border-surface" data-stitch-original-src="c0052c41ae9180f0===../../images/student_avatar_3.jpg">
+                </div>
+                <span data-design-text-token="label-sm" class="text-label-sm text-on-surface tabular-nums">1.240+ Siswa Terdaftar</span>
+              </div>
+
+              <!-- Single Primary CTA Button -->
+              <!-- COMPONENT: button-primary -->
+              <a href="#bilik-suara" data-component-id="button-primary" data-component-type="button" data-component-variant="primary" class="inline-flex items-center justify-center gap-sm bg-primary hover:bg-primary-hover text-on-primary rounded px-lg py-3 font-body text-label-lg shadow-[0_0_0_1px_#1D4ED8,0_4px_12px_rgba(29,78,216,0.18)] transition-[background-color,transform] duration-interactive ease-interactive active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                <span data-design-text-token="label-lg">Mulai Memilih</span>
+                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span>
+              </a>
+            </div>
+
+            <!-- Center Column: Dynamic Diagonal Stack of 3 Elevated UI Preview Cards Framing a Laptop Mockup Base -->
+            <div class="lg:col-span-5 flex flex-col gap-md">
+              <!-- Laptop Mockup Base Frame -->
+              <div class="bg-surface border border-border-hairline rounded-md p-md shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)] flex flex-col gap-md">
+                <!-- Laptop Top Bezel Bar -->
+                <div class="flex items-center justify-between border-b border-border-hairline pb-sm">
+                  <div class="flex items-center gap-xs">
+                    <span class="w-2.5 h-2.5 rounded-full bg-border-input" aria-hidden="true"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-border-input" aria-hidden="true"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-border-input" aria-hidden="true"></span>
+                  </div>
+                  <span data-design-text-token="label-sm" class="text-label-sm text-muted bg-surface-subtle px-3 py-0.5 rounded-full">pilketos.sman1nusantara.sch.id</span>
+                  <span class="material-symbols-outlined text-[16px] text-success" aria-hidden="true">lock</span>
+                </div>
+
+                <!-- Diagonal Stack of 3 Elevated UI Preview Cards (Non-overlapping, staggered alignment) -->
+                <div class="flex flex-col gap-sm">
+                  <!-- Card 1: Voter Verification Status Card (Left-aligned) -->
+                  <div class="self-start w-full sm:w-[88%] bg-surface border border-border-hairline rounded-md p-md shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)] flex items-center justify-between gap-sm">
+                    <div class="flex items-center gap-sm">
+                      <div class="w-9 h-9 rounded bg-success/10 text-success flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: &#39;FILL&#39; 1;" aria-hidden="true">verified_user</span>
+                      </div>
+                      <div>
+                        <p data-design-text-token="label-lg" class="text-label-lg text-on-surface tabular-nums">NISN 0074829103</p>
+                        <p data-design-text-token="label-sm" class="text-label-sm text-muted">Status Pemilih Aktif</p>
+                      </div>
+                    </div>
+                    <span data-design-text-token="label-sm" class="text-label-sm text-on-success bg-success px-2.5 py-1 rounded-full">Terverifikasi</span>
+                  </div>
+
+                  <!-- Card 2: Candidate Ballot Card (Center/Right-aligned) -->
+                  <div class="self-end w-full sm:w-[90%] bg-surface border border-border-hairline rounded-md p-md shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)] flex flex-col gap-sm">
+                    <div class="flex items-center justify-between">
+                      <span data-design-text-token="label-sm" class="text-label-sm text-primary uppercase">Surat Suara Digital</span>
+                      <span data-design-text-token="label-sm" class="text-label-sm text-muted tabular-nums">3 Paslon</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-xs">
+                      <div class="rounded border-2 border-primary bg-primary-tint p-sm flex flex-col items-center gap-xs">
+                        <span data-design-text-token="label-sm" class="text-label-sm text-on-primary-tint tabular-nums">01</span>
+                        <span data-design-text-token="label-sm" class="text-label-sm text-on-surface">Raka</span>
+                      </div>
+                      <div class="rounded border border-border-hairline bg-surface-canvas p-sm flex flex-col items-center gap-xs">
+                        <span data-design-text-token="label-sm" class="text-label-sm text-muted tabular-nums">02</span>
+                        <span data-design-text-token="label-sm" class="text-label-sm text-muted">Zahra</span>
+                      </div>
+                      <div class="rounded border border-border-hairline bg-surface-canvas p-sm flex flex-col items-center gap-xs">
+                        <span data-design-text-token="label-sm" class="text-label-sm text-muted tabular-nums">03</span>
+                        <span data-design-text-token="label-sm" class="text-label-sm text-muted">Bagas</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card 3: Live Quick Count Bar Chart Card (Left-aligned) -->
+                  <div class="self-start w-full sm:w-[88%] bg-surface border border-border-hairline rounded-md p-md shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)] flex flex-col gap-sm">
+                    <div class="flex items-center justify-between">
+                      <span data-design-text-token="label-lg" class="text-label-lg text-on-surface">Live Quick Count</span>
+                      <span data-design-text-token="label-sm" class="text-label-sm text-muted tabular-nums">1.042 Suara</span>
+                    </div>
+                    <div class="flex flex-col gap-xs">
+                      <div class="flex items-center gap-sm">
+                        <span data-design-text-token="label-sm" class="text-label-sm text-on-surface w-8 tabular-nums">01</span>
+                        <div class="flex-1 h-2 bg-surface-subtle rounded-full overflow-hidden">
+                          <div class="h-full bg-primary rounded-full" style="width: 42.8%;"></div>
+                        </div>
+                        <span data-design-text-token="label-sm" class="text-label-sm text-on-surface w-11 text-right tabular-nums">42.8%</span>
+                      </div>
+                      <div class="flex items-center gap-sm">
+                        <span data-design-text-token="label-sm" class="text-label-sm text-muted w-8 tabular-nums">02</span>
+                        <div class="flex-1 h-2 bg-surface-subtle rounded-full overflow-hidden">
+                          <div class="h-full bg-primary/60 rounded-full" style="width: 34.1%;"></div>
+                        </div>
+                        <span data-design-text-token="label-sm" class="text-label-sm text-muted w-11 text-right tabular-nums">34.1%</span>
+                      </div>
+                      <div class="flex items-center gap-sm">
+                        <span data-design-text-token="label-sm" class="text-label-sm text-muted w-8 tabular-nums">03</span>
+                        <div class="flex-1 h-2 bg-surface-subtle rounded-full overflow-hidden">
+                          <div class="h-full bg-primary/35 rounded-full" style="width: 23.1%;"></div>
+                        </div>
+                        <span data-design-text-token="label-sm" class="text-label-sm text-muted w-11 text-right tabular-nums">23.1%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Laptop Base Lip -->
+              <div class="mx-auto w-2/3 h-2 bg-border-input rounded-b-md" aria-hidden="true"></div>
+            </div>
+
+            <!-- Right Column: Vertical Stack of 6 Compact Horizontal Feature Cards -->
+            <div class="md:col-span-2 lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-sm">
+              <div class="bg-surface border border-border-hairline rounded-md p-3 flex items-center gap-sm shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)]">
+                <div class="w-9 h-9 rounded bg-primary-tint text-on-primary-tint flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">how_to_vote</span>
+                </div>
+                <div>
+                  <p data-design-text-token="label-lg" class="text-label-lg text-on-surface">1 Siswa 1 Suara</p>
+                  <p data-design-text-token="label-sm" class="text-label-sm text-muted">Hak pilih tunggal terkunci</p>
+                </div>
+              </div>
+
+              <div class="bg-surface border border-border-hairline rounded-md p-3 flex items-center gap-sm shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)]">
+                <div class="w-9 h-9 rounded bg-primary-tint text-on-primary-tint flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">lock</span>
+                </div>
+                <div>
+                  <p data-design-text-token="label-lg" class="text-label-lg text-on-surface">Enkripsi Suara</p>
+                  <p data-design-text-token="label-sm" class="text-label-sm text-muted">Kerahasiaan pilihan terjaga</p>
+                </div>
+              </div>
+
+              <div class="bg-surface border border-border-hairline rounded-md p-3 flex items-center gap-sm shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)]">
+                <div class="w-9 h-9 rounded bg-primary-tint text-on-primary-tint flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">monitoring</span>
+                </div>
+                <div>
+                  <p data-design-text-token="label-lg" class="text-label-lg text-on-surface">Hasil Real-Time</p>
+                  <p data-design-text-token="label-sm" class="text-label-sm text-muted">Rekapitulasi suara langsung</p>
+                </div>
+              </div>
+
+              <div class="bg-surface border border-border-hairline rounded-md p-3 flex items-center gap-sm shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)]">
+                <div class="w-9 h-9 rounded bg-primary-tint text-on-primary-tint flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">devices</span>
+                </div>
+                <div>
+                  <p data-design-text-token="label-lg" class="text-label-lg text-on-surface">Akses Multi-Perangkat</p>
+                  <p data-design-text-token="label-sm" class="text-label-sm text-muted">Ponsel, tablet, dan laptop</p>
+                </div>
+              </div>
+
+              <div class="bg-surface border border-border-hairline rounded-md p-3 flex items-center gap-sm shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)]">
+                <div class="w-9 h-9 rounded bg-primary-tint text-on-primary-tint flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">badge</span>
+                </div>
+                <div>
+                  <p data-design-text-token="label-lg" class="text-label-lg text-on-surface">Validasi NISN</p>
+                  <p data-design-text-token="label-sm" class="text-label-sm text-muted">Cocok dengan daftar pemilih</p>
+                </div>
+              </div>
+
+              <div class="bg-surface border border-border-hairline rounded-md p-3 flex items-center gap-sm shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)]">
+                <div class="w-9 h-9 rounded bg-primary-tint text-on-primary-tint flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">verified</span>
+                </div>
+                <div>
+                  <p data-design-text-token="label-lg" class="text-label-lg text-on-surface">Transparan &amp; Jujur</p>
+                  <p data-design-text-token="label-sm" class="text-label-sm text-muted">Diawasi Panitia Pemilihan OSIS</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 3A. CANDIDATE SHOWCASE GRID -->
+      <section id="kandidat" class="py-section lg:py-section-lg border-b border-border-hairline bg-surface">
+        <div class="max-w-[1200px] mx-auto px-lg">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-xl">
+            <div class="flex flex-col gap-xs max-w-prose">
+              <h2 data-design-text-token="headline-lg" class="font-headline text-headline-lg-mobile lg:text-headline-lg text-on-surface text-balance">
+                Profil Pasangan Calon Ketua &amp; Wakil OSIS
+              </h2>
+              <p data-design-text-token="body-lg" class="text-body-lg text-muted text-pretty">
+                Pelajari gagasan utama dan program kerja masing-masing pasangan calon sebelum memasuki bilik suara.
+              </p>
+            </div>
+            <span data-design-text-token="label-sm" class="text-label-sm text-muted tabular-nums">Periode Bakti 2026 / 2027</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-lg items-stretch">
+            <!-- Paslon 01 -->
+            <!-- COMPONENT: card-action -->
+            <article data-component-id="card-action" data-component-type="card" data-component-variant="action" class="h-full bg-surface border border-border-hairline rounded-md p-lg shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)] flex flex-col justify-between gap-md">
+              <div class="flex flex-col gap-md">
+                <div class="relative overflow-hidden rounded border border-border-hairline bg-surface-canvas">
+                  <img src="https://lh3.googleusercontent.com/aida/ALJJyrBbzYB6FMCcCxvHoO_oCHv6r_2ZgP5ukD_GY4RarC1F2if-woz7OsuJoSktNATuLYFgRrNqZHnopKE_pAq5LeT7K6Scohh5QKR83pMxnyc75kOVdwDOb7urCaGoQBLb3UKPT1UOkxlBECLzXrOKv1hxqmKk6YTWCYzONayMb4i6Ti1oDfxVFhXRS156yojXdsK7bFcC642oIYy5W0k36Iv1hUI2wG3G2HNfs_93CKVHmFnn" alt="Pasangan Calon 01 Raka Pratama dan Nadia Kusuma" class="w-full aspect-[4/3] object-cover" data-stitch-original-src="cf47e1d630664b90===../../images/paslon_01.jpg">
+                  <span data-design-text-token="label-sm" class="absolute top-3 left-3 inline-flex items-center rounded-full bg-primary text-on-primary px-3 py-1 text-label-sm tabular-nums">Paslon 01</span>
+                </div>
+                <header class="flex flex-col gap-xs">
+                  <h3 data-design-text-token="title-lg" class="font-headline text-title-lg text-on-surface">Raka Pratama &amp; Nadia Kusuma</h3>
+                  <p data-design-text-token="label-sm" class="text-label-sm text-muted">XI IPA 2 &amp; XI IPS 1</p>
+                </header>
+                <p data-design-text-token="body-md" class="text-body-md text-muted text-pretty">
+                  Mewujudkan OSIS yang inklusif, transparan dalam pelaporan anggaran kegiatan, dan aktif mendorong literasi digital siswa.
+                </p>
+              </div>
+              <footer class="pt-md border-t border-border-hairline">
+                <button type="button" data-paslon="01" class="open-vision-btn w-full inline-flex items-center justify-center bg-surface hover:bg-surface-subtle text-on-surface border border-border-input rounded px-md py-2.5 font-body text-label-lg transition-[background-color,transform] duration-interactive ease-interactive active:scale-[0.98]">
+                  <span data-design-text-token="label-lg">Lihat Visi &amp; Misi</span>
+                </button>
+              </footer>
+            </article>
+
+            <!-- Paslon 02 -->
+            <article data-component-id="card-action" data-component-type="card" data-component-variant="action" class="h-full bg-surface border border-border-hairline rounded-md p-lg shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)] flex flex-col justify-between gap-md">
+              <div class="flex flex-col gap-md">
+                <div class="relative overflow-hidden rounded border border-border-hairline bg-surface-canvas">
+                  <img src="https://lh3.googleusercontent.com/aida/ALJJyrCdtxCEHYI1GnxnwIxCyv8_8pbCiOFT8LoGoQvmjiL291MBqeLEAVD773MpbaUg6ehARRGw5uCXqk3N_1Rt5xJjePXu014PYm1VdG-iHR9LOu93GW_HY8S58qoCJAg_JBfXALDBduDiVo2g94tyguWSGfHEDWy6ih7qTnHPwLoCGYxRJh2lXCLuC-xLPcOueRxpaSdTWtLKh4zCLYtV6kgM1_2RR-lMPBQUokHQ0f37ASAZPw" alt="Pasangan Calon 02 Zahra Aulia dan Dimas Saputra" class="w-full aspect-[4/3] object-cover" data-stitch-original-src="16cc772fc4e3b6ba===../../images/paslon_02.jpg">
+                  <span data-design-text-token="label-sm" class="absolute top-3 left-3 inline-flex items-center rounded-full bg-primary text-on-primary px-3 py-1 text-label-sm tabular-nums">Paslon 02</span>
+                </div>
+                <header class="flex flex-col gap-xs">
+                  <h3 data-design-text-token="title-lg" class="font-headline text-title-lg text-on-surface">Zahra Aulia &amp; Dimas Saputra</h3>
+                  <p data-design-text-token="label-sm" class="text-label-sm text-muted">XI IPA 1 &amp; XI Bahasa</p>
+                </header>
+                <p data-design-text-token="body-md" class="text-body-md text-muted text-pretty">
+                  Membangun ekosistem ekstrakurikuler yang kolaboratif, ramah lingkungan, serta responsif terhadap aspirasi seluruh angkatan.
+                </p>
+              </div>
+              <footer class="pt-md border-t border-border-hairline">
+                <button type="button" data-paslon="02" class="open-vision-btn w-full inline-flex items-center justify-center bg-surface hover:bg-surface-subtle text-on-surface border border-border-input rounded px-md py-2.5 font-body text-label-lg transition-[background-color,transform] duration-interactive ease-interactive active:scale-[0.98]">
+                  <span data-design-text-token="label-lg">Lihat Visi &amp; Misi</span>
+                </button>
+              </footer>
+            </article>
+
+            <!-- Paslon 03 -->
+            <article data-component-id="card-action" data-component-type="card" data-component-variant="action" class="h-full bg-surface border border-border-hairline rounded-md p-lg shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)] flex flex-col justify-between gap-md">
+              <div class="flex flex-col gap-md">
+                <div class="relative overflow-hidden rounded border border-border-hairline bg-surface-canvas">
+                  <img src="https://lh3.googleusercontent.com/aida/ALJJyrCZFWd5T7V8sDrf8FGEc1TxBemZ54zZthSJ7KNkYLMZpywUASInXTinTEfmfJeECnrtnmDAUP4qSFMnaBV2sj0l5Hecv_7KsU4ZGR6QIEWBQ7bI4k8izH0X3Tb5aXiNZraRxyn72v15sBA8UGMmxOGwLW0xDPiZwkzaDfgucVWFOh_NVPAds4Cm5HbD9Kh6Wd9x3sbtEtccEEYe-lsvfJPvzXY3s87bJxV9PPYYeF3fO0AU3A" alt="Pasangan Calon 03 Bagas Mahendra dan Citra Lestari" class="w-full aspect-[4/3] object-cover" data-stitch-original-src="af1eb1b994f7112f===../../images/paslon_03.jpg">
+                  <span data-design-text-token="label-sm" class="absolute top-3 left-3 inline-flex items-center rounded-full bg-primary text-on-primary px-3 py-1 text-label-sm tabular-nums">Paslon 03</span>
+                </div>
+                <header class="flex flex-col gap-xs">
+                  <h3 data-design-text-token="title-lg" class="font-headline text-title-lg text-on-surface">Bagas Mahendra &amp; Citra Lestari</h3>
+                  <p data-design-text-token="label-sm" class="text-label-sm text-muted">XI IPS 2 &amp; XI IPA 4</p>
+                </header>
+                <p data-design-text-token="body-md" class="text-body-md text-muted text-pretty">
+                  Menguatkan budaya prestasi akademik dan seni siswa melalui program mentoring sebaya dan festival tahunan sekolah.
+                </p>
+              </div>
+              <footer class="pt-md border-t border-border-hairline">
+                <button type="button" data-paslon="03" class="open-vision-btn w-full inline-flex items-center justify-center bg-surface hover:bg-surface-subtle text-on-surface border border-border-input rounded px-md py-2.5 font-body text-label-lg transition-[background-color,transform] duration-interactive ease-interactive active:scale-[0.98]">
+                  <span data-design-text-token="label-lg">Lihat Visi &amp; Misi</span>
+                </button>
+              </footer>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3B. DIGITAL VOTING BOOTH (BILIK SUARA) -->
+      <section id="bilik-suara" class="py-section lg:py-section-lg border-b border-border-hairline bg-surface-canvas">
+        <div class="max-w-[1200px] mx-auto px-lg">
+          <div class="flex flex-col gap-xs mb-xl max-w-prose">
+            <h2 data-design-text-token="headline-lg" class="font-headline text-headline-lg-mobile lg:text-headline-lg text-on-surface text-balance">
+              Bilik Suara Digital
+            </h2>
+            <p data-design-text-token="body-lg" class="text-body-lg text-muted text-pretty">
+              Pilih pasangan calon Ketua dan Wakil OSIS pilihan Anda secara langsung dan rahasia.
+            </p>
+          </div>
+
+          <div class="max-w-3xl bg-surface border border-border-hairline rounded-md p-lg lg:p-xl shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)] flex flex-col gap-lg">
+            <div class="flex items-center justify-between border-b border-border-hairline pb-md">
+              <div>
+                <h3 data-design-text-token="title-lg" class="font-headline text-title-lg text-on-surface">Pilih Pasangan Calon</h3>
+                <p data-design-text-token="body-md" class="text-body-md text-muted">Klik salah satu kartu kandidat untuk menandai surat suara</p>
+              </div>
+              <span data-design-text-token="label-sm" class="text-label-sm text-muted shrink-0">1 Pilihan</span>
+            </div>
+
+            <!-- Radio Ballot Options -->
+            <div id="ballot-options" role="radiogroup" aria-label="Pilihan Pasangan Calon Ketua OSIS" class="flex flex-col gap-md">
+              <label class="ballot-card cursor-pointer rounded-md border border-border-hairline bg-surface hover:bg-surface-subtle p-md flex items-center justify-between gap-md transition-[background-color,border-color] duration-interactive ease-interactive">
+                <div class="flex items-center gap-md">
+                  <input type="radio" name="paslon" value="01" class="sr-only">
+                  <span class="w-10 h-10 rounded bg-primary-tint text-on-primary-tint font-headline text-title-md flex items-center justify-center shrink-0 tabular-nums">01</span>
+                  <div>
+                    <p data-design-text-token="title-md" class="text-title-md text-on-surface">Raka Pratama &amp; Nadia Kusuma</p>
+                    <p data-design-text-token="body-md" class="text-body-md text-muted">OSIS Inklusif, Transparan &amp; Adaptif Digital</p>
+                  </div>
+                </div>
+                <span class="ballot-check material-symbols-outlined text-[24px] text-border-input" aria-hidden="true">radio_button_unchecked</span>
+              </label>
+
+              <label class="ballot-card cursor-pointer rounded-md border border-border-hairline bg-surface hover:bg-surface-subtle p-md flex items-center justify-between gap-md transition-[background-color,border-color] duration-interactive ease-interactive">
+                <div class="flex items-center gap-md">
+                  <input type="radio" name="paslon" value="02" class="sr-only">
+                  <span class="w-10 h-10 rounded bg-primary-tint text-on-primary-tint font-headline text-title-md flex items-center justify-center shrink-0 tabular-nums">02</span>
+                  <div>
+                    <p data-design-text-token="title-md" class="text-title-md text-on-surface">Zahra Aulia &amp; Dimas Saputra</p>
+                    <p data-design-text-token="body-md" class="text-body-md text-muted">Ekstrakurikuler Kolaboratif &amp; Sekolah Hijau</p>
+                  </div>
+                </div>
+                <span class="ballot-check material-symbols-outlined text-[24px] text-border-input" aria-hidden="true">radio_button_unchecked</span>
+              </label>
+
+              <label class="ballot-card cursor-pointer rounded-md border border-border-hairline bg-surface hover:bg-surface-subtle p-md flex items-center justify-between gap-md transition-[background-color,border-color] duration-interactive ease-interactive">
+                <div class="flex items-center gap-md">
+                  <input type="radio" name="paslon" value="03" class="sr-only">
+                  <span class="w-10 h-10 rounded bg-primary-tint text-on-primary-tint font-headline text-title-md flex items-center justify-center shrink-0 tabular-nums">03</span>
+                  <div>
+                    <p data-design-text-token="title-md" class="text-title-md text-on-surface">Bagas Mahendra &amp; Citra Lestari</p>
+                    <p data-design-text-token="body-md" class="text-body-md text-muted">Budaya Prestasi, Seni &amp; Mentoring Sebaya</p>
+                  </div>
+                </div>
+                <span class="ballot-check material-symbols-outlined text-[24px] text-border-input" aria-hidden="true">radio_button_unchecked</span>
+              </label>
+            </div>
+
+            <!-- Confirmation Action & Receipt -->
+            <div id="vote-action-area" class="pt-sm flex flex-col sm:flex-row sm:items-center justify-between gap-md border-t border-border-hairline">
+              <p id="vote-hint" data-design-text-token="body-md" class="text-body-md text-muted text-pretty">
+                Periksa pilihan Anda sebelum mengirim suara.
+              </p>
+              <!-- COMPONENT: button-with-icon -->
+              <button id="submit-vote-btn" data-component-id="button-with-icon" data-component-type="button" data-component-variant="with-icon" type="button" class="inline-flex items-center justify-center gap-sm bg-primary hover:bg-primary-hover text-on-primary rounded px-lg py-3 font-body text-label-lg shadow-[0_0_0_1px_#1D4ED8,0_4px_12px_rgba(29,78,216,0.18)] transition-[background-color,transform] duration-interactive ease-interactive active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shrink-0">
+                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">how_to_vote</span>
+                <span data-design-text-token="label-lg">Kirim Suara Resmi</span>
+              </button>
+            </div>
+
+            <!-- Vote Receipt (Hidden until submitted) -->
+            <div id="vote-receipt" class="hidden rounded-md bg-success/10 border border-success/30 p-md flex items-start gap-sm">
+              <span class="material-symbols-outlined text-success text-[22px] shrink-0" style="font-variation-settings: &#39;FILL&#39; 1;" aria-hidden="true">check_circle</span>
+              <div>
+                <p data-design-text-token="title-md" class="text-title-md text-on-surface">Suara Anda Berhasil Dicatat</p>
+                <p id="receipt-detail" data-design-text-token="body-md" class="text-body-md text-muted tabular-nums">Kode Resi Enkripsi: PKT-REC-94821 • Pilihan Anda telah tercatat.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3C. LIVE QUICK COUNT SECTION -->
+      <section id="quick-count" class="py-section lg:py-section-lg bg-surface">
+        <div class="max-w-[1200px] mx-auto px-lg">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-xl">
+            <div class="flex flex-col gap-xs max-w-prose">
+              <h2 data-design-text-token="headline-lg" class="font-headline text-headline-lg-mobile lg:text-headline-lg text-on-surface text-balance">
+                Live Quick Count
+              </h2>
+              <p data-design-text-token="body-lg" class="text-body-lg text-muted text-pretty">
+                Pemantauan perolehan suara sementara dan tingkat partisipasi pemilih secara transparan.
+              </p>
+            </div>
+            <div class="inline-flex items-center gap-sm bg-surface-subtle border border-border-hairline rounded-full px-3 py-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-success" aria-hidden="true"></span>
+              <span data-design-text-token="label-sm" class="text-label-sm text-on-surface tabular-nums">Pembaruan Otomatis • 25 Nov 2026</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-stretch">
+            <!-- Left: Horizontal Progress Bar Breakdown -->
+            <div class="lg:col-span-7 bg-surface border border-border-hairline rounded-md p-lg lg:p-xl shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)] flex flex-col justify-between gap-lg">
+              <h3 data-design-text-token="title-lg" class="font-headline text-title-lg text-on-surface">Perolehan Suara Per Paslon</h3>
+
+              <div class="flex flex-col gap-lg">
+                <!-- Row 01 -->
+                <div class="flex flex-col gap-xs">
+                  <div class="flex items-center justify-between gap-sm">
+                    <span data-design-text-token="title-md" class="text-title-md text-on-surface">01 — Raka Pratama &amp; Nadia Kusuma</span>
+                    <span id="qc-val-01" data-design-text-token="label-lg" class="text-label-lg text-primary tabular-nums">446 suara (42.8%)</span>
+                  </div>
+                  <div class="w-full h-3 bg-surface-subtle rounded-full overflow-hidden">
+                    <div id="qc-bar-01" class="h-full bg-primary rounded-full transition-[width] duration-progress-bar ease-interactive" style="width: 42.8%;"></div>
+                  </div>
+                </div>
+
+                <!-- Row 02 -->
+                <div class="flex flex-col gap-xs">
+                  <div class="flex items-center justify-between gap-sm">
+                    <span data-design-text-token="title-md" class="text-title-md text-on-surface">02 — Zahra Aulia &amp; Dimas Saputra</span>
+                    <span id="qc-val-02" data-design-text-token="label-lg" class="text-label-lg text-on-surface tabular-nums">355 suara (34.1%)</span>
+                  </div>
+                  <div class="w-full h-3 bg-surface-subtle rounded-full overflow-hidden">
+                    <div id="qc-bar-02" class="h-full bg-primary/65 rounded-full transition-[width] duration-progress-bar ease-interactive" style="width: 34.1%;"></div>
+                  </div>
+                </div>
+
+                <!-- Row 03 -->
+                <div class="flex flex-col gap-xs">
+                  <div class="flex items-center justify-between gap-sm">
+                    <span data-design-text-token="title-md" class="text-title-md text-on-surface">03 — Bagas Mahendra &amp; Citra Lestari</span>
+                    <span id="qc-val-03" data-design-text-token="label-lg" class="text-label-lg text-on-surface tabular-nums">241 suara (23.1%)</span>
+                  </div>
+                  <div class="w-full h-3 bg-surface-subtle rounded-full overflow-hidden">
+                    <div id="qc-bar-03" class="h-full bg-primary/40 rounded-full transition-[width] duration-progress-bar ease-interactive" style="width: 23.1%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <p data-design-text-token="body-md" class="text-body-md text-muted pt-md border-t border-border-hairline">
+                Data quick count bersumber dari kotak suara digital terenkripsi dan diaudit oleh Panitia Pemilihan OSIS.
+              </p>
+            </div>
+
+            <!-- Right: Total Turnout Card + Anonymized Activity Feed -->
+            <div class="lg:col-span-5 flex flex-col gap-lg">
+              <!-- Turnout Percentage Card -->
+              <div class="bg-surface border border-border-hairline rounded-md p-lg shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)] flex items-center justify-between gap-md">
+                <div class="flex flex-col gap-xs">
+                  <span data-design-text-token="label-sm" class="text-label-sm text-muted uppercase">Total Partisipasi Pemilih</span>
+                  <span id="qc-turnout-pct" data-design-text-token="headline-lg" class="font-headline text-headline-lg-mobile lg:text-headline-lg text-primary tabular-nums">84.0%</span>
+                  <span id="qc-turnout-count" data-design-text-token="body-md" class="text-body-md text-muted tabular-nums">1.042 dari 1.240 siswa telah memilih</span>
+                </div>
+                <div class="w-14 h-14 rounded-md bg-primary-tint text-on-primary-tint flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[28px]" aria-hidden="true">pie_chart</span>
+                </div>
+              </div>
+
+              <!-- Anonymized Real-Time Activity Feed -->
+              <div class="flex-1 bg-surface border border-border-hairline rounded-md p-lg shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)] flex flex-col gap-md">
+                <h3 data-design-text-token="title-md" class="text-title-md text-on-surface">Aktivitas Masuk Teranonimkan</h3>
+                <ul id="activity-feed" class="flex flex-col divide-y divide-border-hairline">
+                  <li class="py-2.5 flex items-center justify-between gap-sm">
+                    <div class="flex items-center gap-sm">
+                      <span class="w-2 h-2 rounded-full bg-success shrink-0" aria-hidden="true"></span>
+                      <span data-design-text-token="body-md" class="text-body-md text-on-surface">Pemilih Kelas XI IPA 3</span>
+                    </div>
+                    <span data-design-text-token="label-sm" class="text-label-sm text-muted tabular-nums">12 dtk lalu</span>
+                  </li>
+                  <li class="py-2.5 flex items-center justify-between gap-sm">
+                    <div class="flex items-center gap-sm">
+                      <span class="w-2 h-2 rounded-full bg-success shrink-0" aria-hidden="true"></span>
+                      <span data-design-text-token="body-md" class="text-body-md text-on-surface">Pemilih Kelas X IPS 2</span>
+                    </div>
+                    <span data-design-text-token="label-sm" class="text-label-sm text-muted tabular-nums">38 dtk lalu</span>
+                  </li>
+                  <li class="py-2.5 flex items-center justify-between gap-sm">
+                    <div class="flex items-center gap-sm">
+                      <span class="w-2 h-2 rounded-full bg-success shrink-0" aria-hidden="true"></span>
+                      <span data-design-text-token="body-md" class="text-body-md text-on-surface">Pemilih Kelas XII IPA 1</span>
+                    </div>
+                    <span data-design-text-token="label-sm" class="text-label-sm text-muted tabular-nums">1 mnt lalu</span>
+                  </li>
+                  <li class="py-2.5 flex items-center justify-between gap-sm">
+                    <div class="flex items-center gap-sm">
+                      <span class="w-2 h-2 rounded-full bg-success shrink-0" aria-hidden="true"></span>
+                      <span data-design-text-token="body-md" class="text-body-md text-on-surface">Pemilih Kelas X IPA 4</span>
+                    </div>
+                    <span data-design-text-token="label-sm" class="text-label-sm text-muted tabular-nums">2 mnt lalu</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 4. MINIMALIST 3-COLUMN INSTITUTIONAL FOOTER -->
+    <footer class="bg-surface border-t border-border-hairline py-2xl">
+      <div class="max-w-[1200px] mx-auto px-lg">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-xl pb-xl border-b border-border-hairline">
+          <!-- Column 1: PPO Info -->
+          <div class="flex flex-col gap-sm">
+            <span data-design-text-token="title-md" class="font-headline text-title-md text-on-surface">Panitia Pemilihan OSIS (PPO)</span>
+            <p data-design-text-token="body-md" class="text-body-md text-muted text-pretty">
+              Sekretariat OSIS SMAN 1 Nusantara, Jl. Pendidikan No. 14. Menyelenggarakan pemilihan Ketua &amp; Wakil OSIS secara langsung, umum, bebas, dan rahasia.
+            </p>
+          </div>
+
+          <!-- Column 2: Quick Anchor Links -->
+          <div class="flex flex-col gap-sm">
+            <span data-design-text-token="title-md" class="font-headline text-title-md text-on-surface">Tautan Cepat</span>
+            <nav aria-label="Tautan Footer" class="flex flex-col gap-xs">
+              <a href="#beranda" class="text-body-md text-muted hover:text-primary transition-colors duration-interactive ease-interactive">Beranda Portal</a>
+              <a href="#kandidat" class="text-body-md text-muted hover:text-primary transition-colors duration-interactive ease-interactive">Profil Pasangan Calon</a>
+              <a href="#bilik-suara" class="text-body-md text-muted hover:text-primary transition-colors duration-interactive ease-interactive">Bilik Suara Digital</a>
+              <a href="#quick-count" class="text-body-md text-muted hover:text-primary transition-colors duration-interactive ease-interactive">Live Quick Count</a>
+            </nav>
+          </div>
+
+          <!-- Column 3: Election Schedule Note -->
+          <div class="flex flex-col gap-sm">
+            <span data-design-text-token="title-md" class="font-headline text-title-md text-on-surface">Jadwal Pemungutan Suara</span>
+            <p data-design-text-token="body-md" class="text-body-md text-muted tabular-nums">
+              Rabu, 25 November 2026<br>
+              Pukul 07.30 – 14.00 WIB
+            </p>
+            <p data-design-text-token="label-sm" class="text-label-sm text-primary">
+              Bilik suara ditutup otomatis tepat pukul 14.00 WIB.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-lg flex flex-col sm:flex-row items-center justify-between gap-sm">
+          <p data-design-text-token="label-sm" class="text-label-sm text-muted">
+            © 2026 SMAN 1 Nusantara • Panitia Pemilihan OSIS (PPO). Seluruh hak cipta dilindungi.
+          </p>
+          <span data-design-text-token="label-sm" class="text-label-sm text-muted">Portal Demokrasi Sekolah</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- MODAL: VISI & MISI KANDIDAT -->
+  <div id="vision-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" class="hidden fixed inset-0 z-50 bg-on-surface/50 flex items-center justify-center p-md">
+    <div class="bg-surface border border-border-hairline rounded-md max-w-lg w-full p-lg lg:p-xl shadow-[0_10px_25px_-5px_rgba(15,23,42,0.16)] flex flex-col gap-md">
+      <div class="flex items-start justify-between gap-md border-b border-border-hairline pb-md">
+        <div>
+          <span id="modal-badge" data-design-text-token="label-sm" class="inline-flex items-center rounded-full bg-primary-tint text-on-primary-tint px-3 py-0.5 text-label-sm mb-xs">Paslon 01</span>
+          <h3 id="modal-title" data-design-text-token="headline-md" class="font-headline text-headline-md text-on-surface">Raka Pratama &amp; Nadia Kusuma</h3>
+        </div>
+        <button id="close-modal-btn" type="button" aria-label="Tutup dialog" class="inline-flex items-center justify-center w-10 h-10 bg-surface hover:bg-surface-subtle text-on-surface border border-border-hairline rounded transition-colors duration-interactive ease-interactive">
+          <span class="material-symbols-outlined text-[20px]" aria-hidden="true">close</span>
+        </button>
+      </div>
+      <div class="flex flex-col gap-md">
+        <div>
+          <h4 data-design-text-token="label-lg" class="text-label-lg text-primary mb-xs">Visi Utama</h4>
+          <p id="modal-vision" data-design-text-token="body-md" class="text-body-md text-on-surface text-pretty"></p>
+        </div>
+        <div>
+          <h4 data-design-text-token="label-lg" class="text-label-lg text-primary mb-xs">Misi Program Kerja</h4>
+          <ul id="modal-missions" class="list-disc pl-5 flex flex-col gap-xs text-body-md text-muted"></ul>
+        </div>
+      </div>
+      <div class="pt-md border-t border-border-hairline flex justify-end">
+        <a href="#bilik-suara" id="modal-vote-link" class="inline-flex items-center justify-center bg-primary hover:bg-primary-hover text-on-primary rounded px-lg py-2.5 font-body text-label-lg transition-colors duration-interactive ease-interactive">
+          Pilih di Bilik Suara
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // Mobile menu toggle
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileNav = document.getElementById('mobile-nav');
+      if (mobileBtn && mobileNav) {
+        mobileBtn.addEventListener('click', () => {
+          const isHidden = mobileNav.classList.toggle('hidden');
+          mobileBtn.setAttribute('aria-expanded', String(!isHidden));
+        });
+      }
+
+      // Candidate Vision & Mission Modal
+      const candidateData = {
+        '01': {
+          badge: 'Paslon 01',
+          title: 'Raka Pratama & Nadia Kusuma',
+          vision: 'Mewujudkan OSIS SMAN 1 Nusantara yang inklusif, transparan dalam tata kelola kegiatan, dan adaptif terhadap perkembangan teknologi pelajar.',
+          missions: [
+            'Menerbitkan laporan terbuka anggaran dan realisasi kegiatan OSIS setiap akhir bulan.',
+            'Menghadirkan kanal aspirasi siswa digital yang ditindaklanjuti dalam forum perwakilan kelas.',
+            'Mengadakan lokakarya literasi digital dan keamanan siber bagi siswa kelas X hingga XII.'
+          ]
+        },
+        '02': {
+          badge: 'Paslon 02',
+          title: 'Zahra Aulia & Dimas Saputra',
+          vision: 'Membangun ekosistem organisasi dan ekstrakurikuler yang kolaboratif, peduli lingkungan, serta ramah bagi seluruh minat bakat siswa.',
+          missions: [
+            'Mengintegrasikan agenda lintas ekstrakurikuler dalam pekan kreasi terpadu.',
+            'Menerapkan program bank sampah dan pengurangan plastik sekali pakai di kantin sekolah.',
+            'Membuka ruang temu rutin bulanan antara pengurus OSIS dan perwakilan setiap angkatan.'
+          ]
+        },
+        '03': {
+          badge: 'Paslon 03',
+          title: 'Bagas Mahendra & Citra Lestari',
+          vision: 'Menguatkan budaya prestasi akademik, olahraga, dan seni melalui kolaborasi sebaya yang suportif dan berintegritas.',
+          missions: [
+            'Menyelenggarakan klinik belajar dan mentoring persiapan olimpiade antar siswa.',
+            'Menggelar festival seni budaya dan kompetisi olahraga antarkelas setiap semester.',
+            'Meningkatkan publikasi apresiasi bagi siswa berprestasi di tingkat kota hingga nasional.'
+          ]
+        }
+      };
+
+      const modal = document.getElementById('vision-modal');
+      const closeModalBtn = document.getElementById('close-modal-btn');
+      const modalVoteLink = document.getElementById('modal-vote-link');
+
+      document.querySelectorAll('.open-vision-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-paslon');
+          const data = candidateData[id];
+          if (!data || !modal) return;
+          document.getElementById('modal-badge').textContent = data.badge;
+          document.getElementById('modal-title').textContent = data.title;
+          document.getElementById('modal-vision').textContent = data.vision;
+          const ul = document.getElementById('modal-missions');
+          ul.innerHTML = '';
+          data.missions.forEach((m) => {
+            const li = document.createElement('li');
+            li.textContent = m;
+            ul.appendChild(li);
+          });
+          modal.classList.remove('hidden');
+        });
+      });
+
+      function closeModal() {
+        if (modal) modal.classList.add('hidden');
+      }
+      if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+      if (modalVoteLink) modalVoteLink.addEventListener('click', closeModal);
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+
+      // Bilik Suara Ballot Selection
+      let hasVoted = false;
+      let selectedPaslon = null;
+
+      const ballotCards = document.querySelectorAll('.ballot-card');
+      ballotCards.forEach((card) => {
+        card.addEventListener('click', () => {
+          if (hasVoted) return;
+          const radio = card.querySelector('input[type="radio"]');
+          if (!radio) return;
+          radio.checked = true;
+          selectedPaslon = radio.value;
+
+          ballotCards.forEach((c) => {
+            const icon = c.querySelector('.ballot-check');
+            c.classList.remove('bg-primary-tint', 'border-2', 'border-primary');
+            c.classList.add('bg-surface', 'border', 'border-border-hairline');
+            if (icon) {
+              icon.textContent = 'radio_button_unchecked';
+              icon.classList.remove('text-primary');
+              icon.classList.add('text-border-input');
+              icon.style.fontVariationSettings = "'FILL' 0";
+            }
+          });
+
+          const activeIcon = card.querySelector('.ballot-check');
+          card.classList.remove('bg-surface', 'border', 'border-border-hairline');
+          card.classList.add('bg-primary-tint', 'border-2', 'border-primary');
+          if (activeIcon) {
+            activeIcon.textContent = 'check_circle';
+            activeIcon.classList.remove('text-border-input');
+            activeIcon.classList.add('text-primary');
+            activeIcon.style.fontVariationSettings = "'FILL' 1";
+          }
+        });
+      });
+
+      const submitVoteBtn = document.getElementById('submit-vote-btn');
+      const voteHint = document.getElementById('vote-hint');
+      const voteReceipt = document.getElementById('vote-receipt');
+
+      if (submitVoteBtn) {
+        submitVoteBtn.addEventListener('click', () => {
+          if (hasVoted) return;
+          if (!selectedPaslon) {
+            voteHint.textContent = 'Pilih salah satu pasangan calon sebelum mengirim suara.';
+            voteHint.classList.remove('text-muted');
+            voteHint.classList.add('text-error');
+            return;
+          }
+
+          hasVoted = true;
+          submitVoteBtn.disabled = true;
+          voteHint.textContent = 'Suara Anda telah terkunci dan tercatat.';
+          voteHint.classList.remove('text-error');
+          voteHint.classList.add('text-muted');
+          voteReceipt.classList.remove('hidden');
+
+          // Update Quick Count totals live
+          const counts = { '01': 446, '02': 355, '03': 241 };
+          counts[selectedPaslon] += 1;
+          const total = counts['01'] + counts['02'] + counts['03'];
+          ['01', '02', '03'].forEach((k) => {
+            const pct = ((counts[k] / total) * 100).toFixed(1);
+            const valEl = document.getElementById('qc-val-' + k);
+            const barEl = document.getElementById('qc-bar-' + k);
+            if (valEl) valEl.textContent = counts[k] + ' suara (' + pct + '%)';
+            if (barEl) barEl.style.width = pct + '%';
+          });
+          const turnoutPct = ((total / 1240) * 100).toFixed(1);
+          document.getElementById('qc-turnout-pct').textContent = turnoutPct + '%';
+          document.getElementById('qc-turnout-count').textContent = total.toLocaleString('id-ID') + ' dari 1.240 siswa telah memilih';
+        });
+      }
+    })();
+  </script>
+
+
+</body></html>

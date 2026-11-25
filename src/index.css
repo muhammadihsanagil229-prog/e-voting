@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1D4ED8;
+  --color-on-primary: #FFFFFF;
+  --color-primary-hover: #1E40AF;
+  --color-primary-tint: #EFF6FF;
+  --color-on-primary-tint: #1D4ED8;
+  --color-surface: #FFFFFF;
+  --color-on-surface: #0F172A;
+  --color-surface-canvas: #F8FAFC;
+  --color-on-surface-canvas: #0F172A;
+  --color-surface-subtle: #F1F5F9;
+  --color-on-surface-subtle: #475569;
+  --color-muted: #475569;
+  --color-border-hairline: #E2E8F0;
+  --color-border-input: #CBD5E1;
+  --color-success: #059669;
+  --color-on-success: #1C1C1C;
+  --color-error: #DC2626;
+  --color-on-error: #FFFFFF;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-title: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-label: "Plus Jakarta Sans", sans-serif;
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-section: 64px;
+  --spacing-section-lg: 80px;
+
+  --radius-sm: 4px;
+  --radius-DEFAULT: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  --ease-interactive: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer utilities {
+  .text-display-lg {
+    font-size: 48px;
+    line-height: 52px;
+    letter-spacing: -1.4px;
+    font-weight: 700;
+  }
+  .text-display-lg-mobile {
+    font-size: 32px;
+    line-height: 36px;
+    letter-spacing: -0.96px;
+    font-weight: 700;
+  }
+  .text-headline-lg {
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: -1px;
+    font-weight: 700;
+  }
+  .text-headline-lg-mobile {
+    font-size: 28px;
+    line-height: 32px;
+    letter-spacing: -0.8px;
+    font-weight: 700;
+  }
+  .text-headline-md {
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: -0.7px;
+    font-weight: 700;
+  }
+  .text-title-lg {
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: -0.4px;
+    font-weight: 600;
+  }
+  .text-title-md {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    font-weight: 600;
+  }
+  .text-body-lg {
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 0px;
+    font-weight: 400;
+  }
+  .text-body-md {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0px;
+    font-weight: 400;
+  }
+  .text-label-lg {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    font-weight: 600;
+  }
+  .text-label-sm {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.2px;
+    font-weight: 600;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

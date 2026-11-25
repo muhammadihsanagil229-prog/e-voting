@@ -1,0 +1,6 @@
+{
+  "name": "PILKETOS OSIS 2026 — Portal E-Voting SMAN 1 Nusantara",
+  "description": "Portal demokrasi digital resmi SMAN 1 Nusantara untuk pemilihan Ketua dan Wakil Ketua OSIS periode 2026/2027 secara langsung, jujur, dan terenkripsi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
