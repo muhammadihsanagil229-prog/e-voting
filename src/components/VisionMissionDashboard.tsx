@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import {AnimatePresence, motion} from 'motion/react';
 import type {CandidatePair, PaslonId} from '../types/election';
-import {ResilientImage} from './ResilientImage';
+import {CandidateMedia} from './CandidateMedia';
 
 interface VisionMissionDashboardProps {
   candidates: CandidatePair[];
@@ -113,16 +113,21 @@ export function VisionMissionDashboard({
           >
             {/* Left Column: Candidate Identity Card */}
             <aside className="lg:col-span-4 bg-surface border border-border-hairline rounded-md p-lg shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)] flex flex-col gap-md">
-              <div className="relative overflow-hidden rounded border border-border-hairline bg-surface-canvas">
-                <ResilientImage
-                  src={candidate.imageUrl}
-                  alt={candidate.imageAlt}
-                  fallbackLabel={candidate.title}
-                  className="w-full aspect-[4/3] object-cover"
-                />
-                <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-primary text-on-primary px-3 py-1 text-label-sm tabular-nums">
+              <div className="flex items-center justify-between gap-sm">
+                <span className="inline-flex items-center rounded-full bg-primary text-on-primary px-3 py-1 text-label-sm tabular-nums">
                   {candidate.badge}
                 </span>
+              </div>
+
+              <div className="overflow-hidden rounded border border-border-hairline bg-surface-canvas">
+                <CandidateMedia
+                  imageUrl={candidate.imageUrl}
+                  imageAlt={candidate.imageAlt}
+                  fallbackLabel={candidate.title}
+                  mediaType={candidate.mediaType}
+                  videoUrl={candidate.videoUrl}
+                  className="w-full aspect-[4/3] object-cover"
+                />
               </div>
 
               <div className="flex flex-col gap-xs">

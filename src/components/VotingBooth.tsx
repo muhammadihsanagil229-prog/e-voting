@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {
   Check,
   CheckCircle2,
@@ -43,6 +43,34 @@ export function VotingBooth({
 }: VotingBoothProps) {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [countdown, setCountdown] = useState<number>(4);
+  const onSwitchVoterRef = useRef(onSwitchVoter);
+  onSwitchVoterRef.current = onSwitchVoter;
+
+  const receiptCode = currentReceipt?.receiptCode ?? null;
+
+  useEffect(() => {
+    if (!receiptCode) {
+      setCountdown(4);
+      return;
+    }
+
+    setCountdown(4);
+    const intervalId = window.setInterval(() => {
+      setCountdown((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [receiptCode]);
+
+  useEffect(() => {
+    if (receiptCode && countdown === 0) {
+      setErrorMsg(null);
+      onSwitchVoterRef.current('');
+    }
+  }, [receiptCode, countdown]);
 
   const trimmedName = activeNisn.trim();
   const normalizedKey = trimmedName.toLowerCase();
@@ -294,6 +322,9 @@ export function VotingBooth({
                   </p>
                   <p className="text-body-md text-muted tabular-nums">
                     Kode Resi Enkripsi: {currentReceipt.receiptCode} • Pilihan Anda untuk Paslon {currentReceipt.paslonId} ({currentReceipt.className}) telah tercatat.
+                  </p>
+                  <p className="text-label-sm text-success mt-1 tabular-nums">
+                    Otomatis refresh untuk pemilih berikutnya dalam {countdown} detik...
                   </p>
                 </div>
               </div>

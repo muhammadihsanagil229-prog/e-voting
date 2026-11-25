@@ -1,7 +1,8 @@
-import {ArrowRight, BookOpen} from 'lucide-react';
+import {ArrowRight, BookOpen, Video} from 'lucide-react';
 import {motion} from 'motion/react';
 import type {CandidatePair} from '../types/election';
-import {ResilientImage} from './ResilientImage';
+import {formatDurationLabel} from '../utils/mediaStorage';
+import {CandidateMedia} from './CandidateMedia';
 
 interface CandidateGridProps {
   candidates: CandidatePair[];
@@ -51,16 +52,31 @@ export function CandidateGrid({candidates, onOpenVision}: CandidateGridProps) {
               className="h-full bg-surface border border-border-hairline rounded-md p-lg shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)] flex flex-col justify-between gap-md"
             >
               <div className="flex flex-col gap-md">
-                <div className="relative overflow-hidden rounded border border-border-hairline bg-surface-canvas">
-                  <ResilientImage
-                    src={candidate.imageUrl}
-                    alt={candidate.imageAlt}
-                    fallbackLabel={candidate.title}
-                    className="w-full aspect-[4/3] object-cover"
-                  />
-                  <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-primary text-on-primary px-3 py-1 text-label-sm tabular-nums">
+                <div className="flex items-center justify-between gap-sm">
+                  <span className="inline-flex items-center rounded-full bg-primary text-on-primary px-3 py-1 text-label-sm tabular-nums">
                     {candidate.badge}
                   </span>
+                  {candidate.mediaType === 'video' && candidate.videoUrl && (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-primary-tint text-primary px-2.5 py-1 text-label-sm tabular-nums">
+                      <Video className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                      <span>
+                        {candidate.videoDurationSec
+                          ? formatDurationLabel(candidate.videoDurationSec)
+                          : 'Video'}
+                      </span>
+                    </span>
+                  )}
+                </div>
+
+                <div className="overflow-hidden rounded border border-border-hairline bg-surface-canvas">
+                  <CandidateMedia
+                    imageUrl={candidate.imageUrl}
+                    imageAlt={candidate.imageAlt}
+                    fallbackLabel={candidate.title}
+                    mediaType={candidate.mediaType}
+                    videoUrl={candidate.videoUrl}
+                    className="w-full aspect-[4/3] object-cover"
+                  />
                 </div>
 
                 <header className="flex flex-col gap-xs">

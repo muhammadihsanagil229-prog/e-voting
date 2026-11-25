@@ -1,8 +1,11 @@
 import {useState} from 'react';
-import {Menu, X} from 'lucide-react';
+import {Lock, Menu, X} from 'lucide-react';
+import type {PortalBranding} from '../types/election';
+import {useResolvedMediaUrl} from '../utils/mediaStorage';
 
 interface HeaderProps {
   activeSection: string;
+  branding: PortalBranding;
   onNavigateSection: (sectionId: string) => void;
 }
 
@@ -14,8 +17,14 @@ const NAV_LINKS = [
   {href: '#kelola-paslon', id: 'kelola-paslon', label: 'Kelola Paslon'},
 ];
 
-export function Header({activeSection, onNavigateSection}: HeaderProps) {
+export function Header({
+  activeSection,
+  branding,
+  onNavigateSection,
+}: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const schoolLogoSrc = useResolvedMediaUrl(branding.schoolLogoUrl);
+  const osisLogoSrc = useResolvedMediaUrl(branding.osisLogoUrl);
 
   return (
     <header className="sticky top-0 z-40 bg-surface border-b border-border-hairline">
@@ -30,23 +39,23 @@ export function Header({activeSection, onNavigateSection}: HeaderProps) {
         >
           <div className="w-10 h-10 flex items-center justify-center shrink-0">
             <img
-              src="/assets/aistudio/logo_smk_al_ikhlas.png"
-              alt="Logo SMKS BM AL IKHLAS"
+              src={schoolLogoSrc ?? branding.schoolLogoUrl}
+              alt={`Logo ${branding.schoolName}`}
               className="w-full h-full object-contain"
             />
           </div>
           <div className="flex flex-col text-center">
             <span className="font-headline text-title-md text-on-surface leading-tight whitespace-nowrap">
-              PILKETOS OSIS
+              {branding.portalTitle}
             </span>
             <span className="text-label-sm text-muted whitespace-nowrap">
-              SMKS BM AL IKHLAS
+              {branding.schoolName}
             </span>
           </div>
           <div className="w-10 h-10 flex items-center justify-center shrink-0">
             <img
-              src="/assets/aistudio/logo_osis_karsakala.png"
-              alt="Logo OSIS Karsakala"
+              src={osisLogoSrc ?? branding.osisLogoUrl}
+              alt="Logo OSIS"
               className="w-full h-full object-contain"
             />
           </div>
@@ -66,13 +75,16 @@ export function Header({activeSection, onNavigateSection}: HeaderProps) {
                   e.preventDefault();
                   onNavigateSection(link.id);
                 }}
-                className={`text-label-lg whitespace-nowrap shrink-0 transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1 py-0.5 ${
+                className={`inline-flex items-center gap-1.5 text-label-lg whitespace-nowrap shrink-0 transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1 py-0.5 ${
                   isActive
                     ? 'text-primary'
                     : 'text-muted hover:text-on-surface'
                 }`}
               >
-                {link.label}
+                {link.id === 'kelola-paslon' && (
+                  <Lock className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                )}
+                <span>{link.label}</span>
               </a>
             );
           })}
@@ -122,13 +134,16 @@ export function Header({activeSection, onNavigateSection}: HeaderProps) {
                     setMobileMenuOpen(false);
                     onNavigateSection(link.id);
                   }}
-                  className={`text-label-lg py-1.5 transition-colors ${
+                  className={`inline-flex items-center gap-1.5 text-label-lg py-1.5 transition-colors ${
                     isActive
                       ? 'text-primary'
                       : 'text-muted hover:text-on-surface'
                   }`}
                 >
-                  {link.label}
+                  {link.id === 'kelola-paslon' && (
+                    <Lock className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                  )}
+                  <span>{link.label}</span>
                 </a>
               );
             })}

@@ -18,6 +18,9 @@ export interface CandidatePair {
   summary: string;
   imageUrl: string;
   imageAlt: string;
+  mediaType?: 'image' | 'video';
+  videoUrl?: string;
+  videoDurationSec?: number;
   vision: string;
   missions: string[];
 }
@@ -43,4 +46,18 @@ export interface VoterProfile {
   nisn: string;
   className: string;
   verified: boolean;
+}
+
+export interface ElectionSchedule {
+  title: string;
+  dateLabel: string;
+  timeLabel: string;
+  note: string;
+}
+
+export interface PortalBranding {
+  schoolLogoUrl: string;
+  osisLogoUrl: string;
+  portalTitle: string;
+  schoolName: string;
 }

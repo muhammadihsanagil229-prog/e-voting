@@ -11,13 +11,15 @@ import {
   Vote,
 } from 'lucide-react';
 import {motion} from 'motion/react';
-import type {DashboardId} from '../types/election';
+import type {DashboardId, PortalBranding} from '../types/election';
+import {useResolvedMediaUrl} from '../utils/mediaStorage';
 import {
   type OrbitalStateRef,
   WhiteLiquidOrbital3D,
 } from './WhiteLiquidOrbital3D';
 
 interface OpeningScreenProps {
+  branding: PortalBranding;
   onEnterPortal: (target?: DashboardId) => void;
 }
 
@@ -110,7 +112,8 @@ const RIGHT_NODES = [
   },
 ];
 
-export function OpeningScreen({onEnterPortal}: OpeningScreenProps) {
+export function OpeningScreen({branding, onEnterPortal}: OpeningScreenProps) {
+  const osisLogoSrc = useResolvedMediaUrl(branding.osisLogoUrl);
   const rootRef = useRef<HTMLDivElement | null>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const orbitalStateRef = useRef<OrbitalStateRef>({
@@ -501,10 +504,10 @@ export function OpeningScreen({onEnterPortal}: OpeningScreenProps) {
             className="pointer-events-none absolute -top-10 right-16 w-[300px] h-[18px] rotate-[-28deg] bg-gradient-to-r from-transparent via-[#60A5FA]/35 to-transparent blur-md opacity-50"
           />
 
-          {/* BAGIAN ATAS: Identitas SMKS BM AL IKHLAS di tengah & diperbesar */}
+          {/* BAGIAN ATAS: Identitas Sekolah di tengah & diperbesar */}
           <div className="reveal-top-school relative z-10 flex items-center justify-center gap-3 px-6 py-3.5 border-b border-border-hairline bg-surface-subtle/75 text-center">
             <span className="font-headline text-base sm:text-xl font-bold tracking-tight text-primary whitespace-nowrap">
-              SMKS BM AL IKHLAS
+              {branding.schoolName}
             </span>
           </div>
 
@@ -665,8 +668,8 @@ export function OpeningScreen({onEnterPortal}: OpeningScreenProps) {
                 className="reveal-hub w-[100px] h-[90px] md:w-[116px] md:h-[98px] rounded-2xl bg-primary-tint border border-primary/35 shadow-[0_12px_32px_rgba(29,78,216,0.2)] flex flex-col items-center justify-center gap-1 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <img
-                  src="/assets/aistudio/logo_osis_karsakala.png"
-                  alt="OSIS SMKS BM AL IKHLAS"
+                  src={osisLogoSrc ?? branding.osisLogoUrl}
+                  alt={`OSIS ${branding.schoolName}`}
                   className="w-10 h-10 md:w-12 md:h-12 object-contain"
                 />
                 <span className="font-headline text-[11px] font-bold tracking-wider text-primary">
@@ -705,8 +708,8 @@ export function OpeningScreen({onEnterPortal}: OpeningScreenProps) {
               className="reveal-hub w-20 h-20 rounded-2xl bg-primary-tint border border-primary/35 shadow-[0_10px_25px_rgba(29,78,216,0.18)] flex flex-col items-center justify-center gap-1 cursor-pointer"
             >
               <img
-                src="/assets/aistudio/logo_osis_karsakala.png"
-                alt="OSIS SMKS BM AL IKHLAS"
+                src={osisLogoSrc ?? branding.osisLogoUrl}
+                alt={`OSIS ${branding.schoolName}`}
                 className="w-10 h-10 object-contain"
               />
               <span className="font-headline text-[10px] font-bold text-primary">

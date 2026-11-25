@@ -1,4 +1,10 @@
-import type {ActivityItem, CandidatePair, VoteCounts} from '../types/election';
+import type {
+  ActivityItem,
+  CandidatePair,
+  ElectionSchedule,
+  PortalBranding,
+  VoteCounts,
+} from '../types/election';
 
 export const TOTAL_REGISTERED_VOTERS = 0;
 
@@ -128,6 +134,24 @@ export const CLASS_GROUPS = [
     label: 'AKL',
     options: ['Kelas X AKL', 'Kelas XI AKL', 'Kelas XII AKL'],
   },
+  {
+    label: 'GURU',
+    options: ['GURU'],
+  },
 ];
 
 export const CLASS_OPTIONS = CLASS_GROUPS.flatMap((group) => group.options);
+
+export const INITIAL_ELECTION_SCHEDULE: ElectionSchedule = {
+  title: 'Jadwal Pemungutan Suara',
+  dateLabel: 'Rabu, 25 November 2026',
+  timeLabel: 'Pukul 07.30 – 14.00 WIB',
+  note: 'Bilik suara ditutup otomatis tepat pukul 14.00 WIB.',
+};
+
+export const INITIAL_PORTAL_BRANDING: PortalBranding = {
+  schoolLogoUrl: '/assets/aistudio/logo_smk_al_ikhlas.png',
+  osisLogoUrl: '/assets/aistudio/logo_osis_karsakala.png',
+  portalTitle: 'PILKETOS OSIS',
+  schoolName: 'SMKS BM AL IKHLAS',
+};

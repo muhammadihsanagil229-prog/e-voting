@@ -12,16 +12,21 @@ import {VotingBooth} from './components/VotingBooth';
 import {
   CANDIDATES,
   INITIAL_ACTIVITY_FEED,
+  INITIAL_ELECTION_SCHEDULE,
+  INITIAL_PORTAL_BRANDING,
   INITIAL_VOTE_COUNTS,
 } from './data/electionData';
 import type {
   ActivityItem,
   CandidatePair,
   DashboardId,
+  ElectionSchedule,
   PaslonId,
+  PortalBranding,
   VoteCounts,
   VoteReceipt,
 } from './types/election';
+import {deleteMediaBlobByUri} from './utils/mediaStorage';
 
 const STORAGE_KEY = 'pilketos_2026_state_v3';
 const INTRO_SEEN_KEY = 'pilketos_white_orbital_seen_v1';
@@ -37,6 +42,8 @@ const EASE_OUT_EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 interface PersistedState {
   candidates: CandidatePair[];
+  schedule: ElectionSchedule;
+  branding: PortalBranding;
   voteCounts: VoteCounts;
   usedNisns: string[];
   receiptsByNisn: Record<string, VoteReceipt>;
@@ -57,6 +64,14 @@ function loadInitialState(): PersistedState {
             : CANDIDATES;
         return {
           candidates: storedCandidates,
+          schedule: {
+            ...INITIAL_ELECTION_SCHEDULE,
+            ...(parsed.schedule ?? {}),
+          },
+          branding: {
+            ...INITIAL_PORTAL_BRANDING,
+            ...(parsed.branding ?? {}),
+          },
           voteCounts: {...INITIAL_VOTE_COUNTS, ...parsed.voteCounts},
           usedNisns: parsed.usedNisns,
           receiptsByNisn: parsed.receiptsByNisn ?? {},
@@ -70,6 +85,8 @@ function loadInitialState(): PersistedState {
   }
   return {
     candidates: CANDIDATES,
+    schedule: INITIAL_ELECTION_SCHEDULE,
+    branding: INITIAL_PORTAL_BRANDING,
     voteCounts: INITIAL_VOTE_COUNTS,
     usedNisns: [],
     receiptsByNisn: {},
@@ -87,7 +104,7 @@ export default function App() {
   const [persisted, setPersisted] = useState<PersistedState>(() =>
     loadInitialState()
   );
-  const [activeNisn, setActiveNisn] = useState<string>('Ahmad Fauzi');
+  const [activeNisn, setActiveNisn] = useState<string>('');
   const [activeClass, setActiveClass] = useState<string>('Kelas X TJKT');
   const [selectedPaslon, setSelectedPaslon] = useState<PaslonId | null>(null);
   const [visionPaslonId, setVisionPaslonId] = useState<PaslonId>('01');
@@ -215,11 +232,48 @@ export default function App() {
   function handleResetCandidate(id: PaslonId) {
     const original = CANDIDATES.find((c) => c.id === id);
     if (!original) return;
+    const current = persisted.candidates.find((c) => c.id === id);
+    if (current?.videoUrl) {
+      void deleteMediaBlobByUri(current.videoUrl);
+    }
+    if (current?.imageUrl && current.imageUrl !== original.imageUrl) {
+      void deleteMediaBlobByUri(current.imageUrl);
+    }
     setPersisted((prev) => ({
       ...prev,
       candidates: prev.candidates.map((cand) =>
         cand.id === id ? original : cand
       ),
+    }));
+  }
+
+  function handleSaveSchedule(updated: ElectionSchedule) {
+    setPersisted((prev) => ({
+      ...prev,
+      schedule: updated,
+    }));
+  }
+
+  function handleResetSchedule() {
+    setPersisted((prev) => ({
+      ...prev,
+      schedule: INITIAL_ELECTION_SCHEDULE,
+    }));
+  }
+
+  function handleSaveBranding(updated: PortalBranding) {
+    setPersisted((prev) => ({
+      ...prev,
+      branding: updated,
+    }));
+  }
+
+  function handleResetBranding() {
+    void deleteMediaBlobByUri(persisted.branding.schoolLogoUrl);
+    void deleteMediaBlobByUri(persisted.branding.osisLogoUrl);
+    setPersisted((prev) => ({
+      ...prev,
+      branding: INITIAL_PORTAL_BRANDING,
     }));
   }
 
@@ -241,6 +295,7 @@ export default function App() {
         {showOpening ? (
           <OpeningScreen
             key="opening"
+            branding={persisted.branding}
             onEnterPortal={(target) => handleEnterFromOpening(target)}
           />
         ) : (
@@ -253,6 +308,7 @@ export default function App() {
           >
         <Header
           activeSection={activeDashboard}
+          branding={persisted.branding}
           onNavigateSection={(id) => navigateToDashboard(id)}
         />
 
@@ -273,6 +329,7 @@ export default function App() {
                   isVerified={isHeroVerified || currentReceipt !== null}
                   selectedPaslon={currentReceipt?.paslonId ?? selectedPaslon}
                   voteCounts={persisted.voteCounts}
+                  receipts={Object.values(persisted.receiptsByNisn)}
                   isElectionClosed={persisted.isElectionClosed}
                   onSelectPaslon={(id) => {
                     if (!persisted.isElectionClosed && !currentReceipt) {
@@ -343,15 +400,24 @@ export default function App() {
               {activeDashboard === 'kelola-paslon' && (
                 <CandidateEditorSection
                   candidates={persisted.candidates}
+                  schedule={persisted.schedule}
+                  branding={persisted.branding}
                   onSaveCandidate={handleSaveCandidate}
                   onResetCandidate={handleResetCandidate}
+                  onSaveSchedule={handleSaveSchedule}
+                  onResetSchedule={handleResetSchedule}
+                  onSaveBranding={handleSaveBranding}
+                  onResetBranding={handleResetBranding}
                 />
               )}
             </motion.div>
           </AnimatePresence>
         </main>
 
-            <Footer onNavigateSection={(id) => navigateToDashboard(id)} />
+            <Footer
+              schedule={persisted.schedule}
+              onNavigateSection={(id) => navigateToDashboard(id)}
+            />
           </motion.div>
         )}
       </AnimatePresence>
