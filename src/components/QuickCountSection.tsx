@@ -4,6 +4,7 @@ import {
   KeyRound,
   Lock,
   PieChart,
+  RefreshCw,
   RotateCcw,
   ShieldAlert,
 } from 'lucide-react';
@@ -16,6 +17,7 @@ interface QuickCountSectionProps {
   activityFeed: ActivityItem[];
   isElectionClosed: boolean;
   onToggleElectionClosed: () => void;
+  onResetElection: () => void;
 }
 
 const COMMITTEE_ACCESS_CODE = 'PPO2026';
@@ -27,9 +29,12 @@ export function QuickCountSection({
   activityFeed,
   isElectionClosed,
   onToggleElectionClosed,
+  onResetElection,
 }: QuickCountSectionProps) {
   const [committeeCode, setCommitteeCode] = useState('');
   const [codeError, setCodeError] = useState<string | null>(null);
+  const [confirmResetOpen, setConfirmResetOpen] = useState(false);
+  const [resetMessage, setResetMessage] = useState<string | null>(null);
 
   const totalVotes =
     voteCounts['01'] +
@@ -44,8 +49,19 @@ export function QuickCountSection({
       return;
     }
     setCodeError(null);
+    setResetMessage(null);
     setCommitteeCode('');
     onToggleElectionClosed();
+  }
+
+  function handleConfirmReset() {
+    onResetElection();
+    setConfirmResetOpen(false);
+    setCodeError(null);
+    setCommitteeCode('');
+    setResetMessage(
+      'Pemilihan suara berhasil diulang. Seluruh suara dan daftar pemilih telah dikembalikan ke 0.'
+    );
   }
 
   return (
@@ -85,8 +101,75 @@ export function QuickCountSection({
                 <span>Kunci Kembali &amp; Buka Pemilihan</span>
               </button>
             )}
+
+            <button
+              type="button"
+              onClick={() => {
+                setResetMessage(null);
+                setConfirmResetOpen((prev) => !prev);
+              }}
+              className="inline-flex items-center gap-1.5 rounded px-4 py-2 text-label-sm bg-surface border border-error/40 text-error hover:bg-error/5 transition-colors whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error"
+            >
+              <RefreshCw className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>Ulangi Pemilihan</span>
+            </button>
           </div>
         </div>
+
+        {confirmResetOpen && (
+          <div className="mb-lg rounded-md border border-error/35 bg-error/5 p-md lg:p-lg flex flex-col sm:flex-row sm:items-center justify-between gap-md">
+            <div className="flex items-start gap-sm">
+              <ShieldAlert
+                className="w-5 h-5 text-error shrink-0 mt-0.5"
+                aria-hidden="true"
+              />
+              <div className="flex flex-col gap-0.5">
+                <span className="text-label-lg text-on-surface">
+                  Konfirmasi Ulangi Pemilihan Suara
+                </span>
+                <p className="text-body-md text-muted">
+                  Tindakan ini akan menghapus {totalVotes.toLocaleString('id-ID')} suara masuk serta riwayat pemilih sehingga pemilihan dimulai ulang dari 0.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-sm shrink-0">
+              <button
+                type="button"
+                onClick={() => setConfirmResetOpen(false)}
+                className="inline-flex items-center justify-center rounded border border-border-input bg-surface hover:bg-surface-subtle px-4 py-2 text-label-sm text-on-surface transition-colors cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              >
+                Batal
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirmReset}
+                className="inline-flex items-center justify-center gap-1.5 rounded bg-error hover:bg-error/90 px-4 py-2 text-label-sm text-on-error transition-colors cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error"
+              >
+                <RefreshCw className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>Ya, Ulangi dari 0</span>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {resetMessage && (
+          <div className="mb-lg rounded-md border border-success/35 bg-success/10 px-md py-3 flex items-center justify-between gap-sm text-body-md text-on-surface">
+            <div className="flex items-center gap-sm">
+              <CheckCircle2
+                className="w-4 h-4 text-success shrink-0"
+                aria-hidden="true"
+              />
+              <span>{resetMessage}</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setResetMessage(null)}
+              className="text-label-sm text-muted hover:text-on-surface cursor-pointer whitespace-nowrap"
+            >
+              Tutup
+            </button>
+          </div>
+        )}
 
         {!isElectionClosed ? (
           <motion.div

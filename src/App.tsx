@@ -191,6 +191,18 @@ export default function App() {
     }));
   }
 
+  function handleResetElection() {
+    setSelectedPaslon(null);
+    setPersisted((prev) => ({
+      ...prev,
+      voteCounts: {...INITIAL_VOTE_COUNTS},
+      usedNisns: [],
+      receiptsByNisn: {},
+      activityFeed: [],
+      isElectionClosed: false,
+    }));
+  }
+
   function handleSaveCandidate(updated: CandidatePair) {
     setPersisted((prev) => ({
       ...prev,
@@ -324,6 +336,7 @@ export default function App() {
                   activityFeed={persisted.activityFeed}
                   isElectionClosed={persisted.isElectionClosed}
                   onToggleElectionClosed={handleToggleElectionClosed}
+                  onResetElection={handleResetElection}
                 />
               )}
 
